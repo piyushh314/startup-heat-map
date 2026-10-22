@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>India Startup Atlas · Built by Piyush Yadav</title>
+<meta name="description" content="Interactive map of registered startups across India. Built by Piyush Yadav, SSCBS, Delhi University.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/maplibre-gl@4.7.1/dist/maplibre-gl.css">
+<link rel="stylesheet" href="style.css">
+</head><body>
+<div id="intro" role="status" aria-label="Loading"><i class="dot"></i></div>
+<div id="map" aria-label="Map of startups in India"></div>
+
+<header id="brand" class="glass">
+  <h1>India Startup Atlas</h1>
+  <p><b id="bigNum">0</b> DPIIT-recognised startups</p>
+  <small id="asof"></small>
+</header>
+
+<div id="searchWrap" class="glass">
+  <input id="q" type="search" placeholder="Search a city or state" aria-label="Search a city or state" autocomplete="off">
+  <ul id="res" role="listbox" hidden></ul>
+</div>
+
+<aside id="dock" class="glass" aria-label="Controls">
+  <button id="handle" class="sheetBtn" aria-expanded="false">Controls and top lists</button>
+  <div class="scroll">
+  <section>
+    <h2>State view</h2>
+    <div class="seg" role="group" aria-label="State metric">
+      <button id="mTotal" aria-pressed="true">Total startups</button>
+      <button id="mPer" aria-pressed="false">Per lakh people</button>
+    </div>
+    <p class="hint" id="perNote"></p>
+    <label class="sw"><input type="checkbox" id="gap"><span>Gap finder</span></label>
+    <button id="gapInfo" class="ico" aria-expanded="false" aria-label="How the gap finder works">i</button>
+    <p id="gapTip" class="hint tipbox" hidden></p>
+  </section>
+  <section>
+    <h2>Top 10</h2>
+    <div class="seg" role="group" aria-label="List type">
+      <button id="tS" aria-pressed="true">States</button>
+      <button id="tD" aria-pressed="false">Districts</button>
+    </div>
+    <ol id="lb" class="lb"></ol>
+  </section>
+  <section class="row">
+    <button id="cmpBtn" class="btn">Compare</button>
+    <button id="png" class="btn">PNG</button>
+    <button id="csv" class="btn">CSV</button>
+    <button id="aboutBtn" class="btn ghost">About</button>
+  </section>
+  <p class="hint" id="unm"></p>
+  <p class="note-m"></p>
+  </div>
+</aside>
+
+<aside id="detail" class="glass" aria-live="polite" aria-label="Details">
+  <button id="dClose" class="ico x" aria-label="Close details">×</button>
+  <div id="dBody"></div>
+</aside>
+
+<aside id="cmp" class="glass" hidden aria-label="Compare">
+  <button id="cClose" class="ico x" aria-label="Close compare">×</button>
+  <h2>Compare</h2>
+  <div class="two"><select id="cA" aria-label="First place"></select><select id="cB" aria-label="Second place"></select></div>
+  <div id="cBody"></div>
+</aside>
+
+<div id="note" class="glass note-d"></div>
+
+<div id="made">
+  <button id="madeTab" aria-expanded="false" aria-label="About the creator">Made by</button>
+  <div class="card"><b>Built by Piyush Yadav</b>
+    <span>BMS, Shaheed Sukhdev College of Business Studies (SSCBS), Delhi University</span>
+    <a class="btn" href="mailto:piyushhh3.14@gmail.com">Email Piyush</a></div>
+</div>
+
+<dialog id="about">
+  <h2>About India Startup Atlas</h2>
+  <p>A map of where India's startups are registered, built to compare places fairly. It shows official state counts, startups per lakh people, and 700+ districts from the Startup India register.</p>
+  <h3>Using it</h3>
+  <p>Zoom in to see heat turn into clusters and glowing district dots. Click a state bubble or a dot for details. Switch to per lakh people so large states do not always win. Turn on Gap finder to mark under-represented states. Use Compare, Top 10, search, and the PNG/CSV export.</p>
+  <h3>Data</h3>
+  <p id="aboutData"></p>
+  <p>The source file has counts by place only. It has no sector, year or startup names, so those features are not included, and nothing is estimated to fill the gap.</p>
+  <p class="by">Built by Piyush Yadav · BMS, SSCBS, Delhi University · <a href="mailto:piyushhh3.14@gmail.com">piyushhh3.14@gmail.com</a></p>
+  <button class="btn" id="aboutClose">Close</button>
+</dialog>
+
+<script src="https://cdn.jsdelivr.net/npm/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+<script src="data/atlas-data.js"></script>
+<script src="app.js"></script>
+</body></html>
